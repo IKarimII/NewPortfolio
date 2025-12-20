@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#0b0b0b"/>
+  <rect x="90" y="90" width="1020" height="1020" rx="80" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="6"/>
+  <path d="M280 760 C360 520, 520 340, 720 300 C900 265, 980 360, 990 470" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="10"/>
+  <path d="M260 740 C360 920, 560 990, 760 950" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="10"/>
+  <circle cx="860" cy="360" r="10" fill="#ffffff" fill-opacity="0.55"/>
+  <text x="120" y="1030" fill="#ffffff" fill-opacity="0.9" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="72" font-weight="700">ARTEMIS</text>
+</svg>

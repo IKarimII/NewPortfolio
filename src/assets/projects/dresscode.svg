@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#0b0b0b"/>
+  <rect x="90" y="90" width="1020" height="1020" rx="80" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="6"/>
+  <path d="M420 300 L600 220 L780 300 L720 420 L600 350 L480 420 Z" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.16" stroke-width="6"/>
+  <path d="M480 420 L520 980 H680 L720 420" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.12" stroke-width="6"/>
+  <text x="120" y="1030" fill="#ffffff" fill-opacity="0.9" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="72" font-weight="700">DRESSCODE</text>
+</svg>
