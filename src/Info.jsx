@@ -4,6 +4,9 @@ import htmlIcon from "./assets/skills/html.svg";
 import cssIcon from "./assets/skills/css.svg";
 import pythonIcon from "./assets/skills/python.svg";
 import postgresqlIcon from "./assets/skills/postgresql.svg";
+import javaIcon from "./assets/skills/java.svg";
+import CIcon from "./assets/skills/c.svg";
+import mipsIcon from "./assets/skills/mips.svg";
 
 export default function Info() {
   const skills = [
@@ -39,20 +42,19 @@ export default function Info() {
     },
     {
       name: "Java",
-      icon: null,
+      icon: javaIcon,
       pixel: { gap: 8, speed: 28, colors: "#fee2e2,#fca5a5,#ef4444" },
     },
     {
       name: "C",
-      icon: null,
+      icon: CIcon,
       pixel: { gap: 7, speed: 26, colors: "#dbeafe,#93c5fd,#3b82f6" },
     },
     {
       name: "MIPS Assembly",
-      icon: null,
+      icon: mipsIcon,
       pixel: { gap: 8, speed: 30, colors: "#e0f2fe,#7dd3fc,#0ea5e9" },
     },
-
   ];
 
   const otherSkills = [
@@ -87,12 +89,12 @@ export default function Info() {
             </h2>
             <p className="mt-6 text-pretty text-base leading-relaxed text-white/80 md:text-lg">
               Fully committed to the philosophy of life-long learning, I’m a
-              full stack developer with a deep passion for Python,JavaScript, React and
-              all things  development. The unique combination of creativity,
-              logic, technology and never running out of new things to discover,
-              drives my excitement and passion for development. When I’m not
-              at my computer I like to spend my time reading, keeping fit and
-              playing the piano.
+              full stack developer with a deep passion for Python,JavaScript,
+              React and all things development. The unique combination of
+              creativity, logic, technology and never running out of new things
+              to discover, drives my excitement and passion for development.
+              When I’m not at my computer I like to spend my time reading,
+              keeping fit and playing the piano.
             </p>
           </div>
 
@@ -148,7 +150,11 @@ export default function Info() {
                       <div className="skill-icon" aria-hidden="true">
                         {skill.icon ? (
                           <img
-                            className="skill-icon__img"
+                            className={`skill-icon__img${
+                              skill.name === "MIPS Assembly"
+                                ? " skill-icon__img--mips"
+                                : ""
+                            }`}
                             src={skill.icon}
                             alt=""
                           />

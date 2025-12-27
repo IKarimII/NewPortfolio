@@ -210,6 +210,12 @@ body {
   display: block;
   width: 44px;
   height: 44px;
+  object-fit: contain;
+}
+
+.skill-icon__img--mips {
+  transform: scale(1.6);
+  transform-origin: center;
 }
 
 .skill-corner {
