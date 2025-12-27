@@ -1,61 +1,31 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-import mernMemoriesImg from "./assets/projects/mern-memories.svg";
-import nextEventImg from "./assets/projects/next-event.svg";
-import devspaceImg from "./assets/projects/devspace.svg";
-import googleCloneImg from "./assets/projects/google-clone.svg";
-import portfolioV1Img from "./assets/projects/portfolio-v1.svg";
-import dresscodeImg from "./assets/projects/dresscode.svg";
-import portfolioV2Img from "./assets/projects/portfolio-v2.svg";
-import musicAppImg from "./assets/projects/music-app.svg";
-import artemisImg from "./assets/projects/artemis.svg";
+import messageboardImg from "./assets/projects/messageboard.png";
+import aiCodeReviewerImg from "./assets/projects/aicode.png";
+import dodgeyCubeImg from "./assets/projects/dodgeycube.png";
 
 const PROJECTS = [
   {
-    name: "Mern Memories",
-    href: "https://github.com/spojskic/mern-memories",
-    image: mernMemoriesImg,
+    name: "MessageBoard",
+    href: "https://github.com/IKarimII/TheMessageBoard",
+    image: messageboardImg,
+    summary:
+      "Full-stack message board with JWT cookie auth, protected routes, and MongoDB persistence (React + Vite frontend, Express backend).",
   },
   {
-    name: "Next Event",
-    href: "https://github.com/spojskic/next-dj-events-frontend",
-    image: nextEventImg,
+    name: "AICodeReviewer",
+    href: "https://github.com/IKarimII/AICodeReviewer",
+    image: aiCodeReviewerImg,
+    summary:
+      "AI code review web app that sends code + language to OpenRouter and returns a structured review (issues, improvements, explanation).",
   },
   {
-    name: "Devspace",
-    href: "https://github.com/spojskic/next-devspace-blog",
-    image: devspaceImg,
-  },
-  {
-    name: "Google Clone",
-    href: "https://github.com/MagicPojska/gulululgl-search-clone",
-    image: googleCloneImg,
-  },
-  {
-    name: "Portfolio V1",
-    href: "https://safetpojskic.netlify.app/",
-    image: portfolioV1Img,
-  },
-  {
-    name: "Dresscode",
-    href: null,
-    image: dresscodeImg,
-  },
-  {
-    name: "Portfolio V2",
-    href: null,
-    image: portfolioV2Img,
-  },
-  {
-    name: "Music App",
-    href: "https://github.com/spojskic/my-music-app",
-    image: musicAppImg,
-  },
-  {
-    name: "Artemis",
-    href: null,
-    image: artemisImg,
+    name: "DodgeyCube",
+    href: "https://github.com/IKarimII/DodgeyCube",
+    image: dodgeyCubeImg,
+    summary:
+      "MIPS Assembly arcade game in MARS: dodge falling hazards to preserve health and collect points to win.",
   },
 ];
 
@@ -574,10 +544,18 @@ export default function Projects() {
                 ref={detailsMediaRef}
                 onMouseDown={(e) => e.stopPropagation()}
               >
-                <img
-                  src={PROJECTS[openIndex].image}
-                  alt={PROJECTS[openIndex].name}
-                />
+                <div className="projects-details__content">
+                  <img
+                    src={PROJECTS[openIndex].image}
+                    alt={PROJECTS[openIndex].name}
+                  />
+
+                  {PROJECTS[openIndex].summary ? (
+                    <div className="projects-details__summary">
+                      {PROJECTS[openIndex].summary}
+                    </div>
+                  ) : null}
+                </div>
 
                 <div className="projects-details__topbar">
                   <div className="projects-details__title">

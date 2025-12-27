@@ -37,7 +37,45 @@ export default function Info() {
       icon: postgresqlIcon,
       pixel: { gap: 9, speed: 28, colors: "#e0e7ff,#a5b4fc,#6366f1" },
     },
+    {
+      name: "Java",
+      icon: null,
+      pixel: { gap: 8, speed: 28, colors: "#fee2e2,#fca5a5,#ef4444" },
+    },
+    {
+      name: "C",
+      icon: null,
+      pixel: { gap: 7, speed: 26, colors: "#dbeafe,#93c5fd,#3b82f6" },
+    },
+    {
+      name: "MIPS Assembly",
+      icon: null,
+      pixel: { gap: 8, speed: 30, colors: "#e0f2fe,#7dd3fc,#0ea5e9" },
+    },
+
   ];
+
+  const otherSkills = [
+    "Node.js",
+    "Express",
+    "TailwindCSS",
+    "Git",
+    "Command Line",
+    "Postman",
+  ];
+
+  const getSkillBadge = (skillName) => {
+    if (skillName === "JavaScript") return "JS";
+    if (skillName === "PostgreSQL") return "SQL";
+    if (skillName === "MIPS Assembly") return "MIPS";
+    if (skillName === "Java") return "JAVA";
+    return skillName
+      .split(" ")
+      .map((p) => p[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 4);
+  };
 
   return (
     <>
@@ -49,12 +87,12 @@ export default function Info() {
             </h2>
             <p className="mt-6 text-pretty text-base leading-relaxed text-white/80 md:text-lg">
               Fully committed to the philosophy of life-long learning, I’m a
-              full stack developer with a deep passion for JavaScript, React and
-              all things web development. The unique combination of creativity,
+              full stack developer with a deep passion for Python,JavaScript, React and
+              all things  development. The unique combination of creativity,
               logic, technology and never running out of new things to discover,
-              drives my excitement and passion for web development. When I’m not
+              drives my excitement and passion for development. When I’m not
               at my computer I like to spend my time reading, keeping fit and
-              playing guitar.
+              playing the piano.
             </p>
           </div>
 
@@ -108,16 +146,38 @@ export default function Info() {
                         {skill.name}
                       </div>
                       <div className="skill-icon" aria-hidden="true">
-                        <img
-                          className="skill-icon__img"
-                          src={skill.icon}
-                          alt=""
-                        />
+                        {skill.icon ? (
+                          <img
+                            className="skill-icon__img"
+                            src={skill.icon}
+                            alt=""
+                          />
+                        ) : (
+                          <div className="skill-icon__badge">
+                            {getSkillBadge(skill.name)}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8">
+              <div className="text-base font-semibold tracking-tight text-white/90 md:text-lg">
+                Other skills
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {otherSkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-white/20 px-3 py-1 text-sm text-white/80"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

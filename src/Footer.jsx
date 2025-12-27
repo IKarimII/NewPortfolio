@@ -1,32 +1,29 @@
 import { useMemo } from "react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   const contacts = useMemo(
     () => [
       {
         label: "GitHub",
-        href: "https://github.com/",
-        text: "github.com/",
+        href: "https://github.com/IKarimII",
       },
       {
         label: "WhatsApp",
-        href: "https://wa.me/",
-        text: "wa.me/",
+        href: "https://wa.me/96103006033",
       },
       {
         label: "Phone",
-        href: "tel:",
-        text: "tel:",
+        href: "tel:+96103006033",
       },
       {
         label: "Email",
-        href: "mailto:",
-        text: "mailto:",
+        href: "mailto:karimhawwa@gmail.com",
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/in/",
-        text: "linkedin.com/in/",
+        href: "https://www.linkedin.com/in/karim-hawwa-166175279/",
       },
     ],
     []
@@ -81,7 +78,7 @@ export default function Footer() {
           </div>
 
           <div className="footer__copyright">
-            <p>© Karim Hawwa 2026</p>
+            <p>© Karim Hawwa {currentYear}</p>
           </div>
         </div>
       </div>
