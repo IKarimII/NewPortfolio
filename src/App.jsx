@@ -1,17 +1,25 @@
-import Header from "./Header.jsx";
-import Info from "./Info.jsx";
-import Projects from "./Projects.jsx";
-import Footer from "./Footer.jsx";
+import Nav from "./components/Nav.jsx";
+import Hero from "./components/Hero.jsx";
+import Work from "./components/Work.jsx";
+import Experience from "./components/Experience.jsx";
+import MoreProjects from "./components/MoreProjects.jsx";
+import Skills from "./components/Skills.jsx";
+import Education from "./components/Education.jsx";
+import Contact from "./components/Contact.jsx";
 
-function App() {
+export default function App() {
   return (
-    <div className="w-full bg-black">
-      <Header />
-      <Info />
-      <Projects/>
-      <Footer/>
-    </div>
+    <>
+      <Nav />
+      <main className="mx-auto max-w-6xl px-5 sm:px-8">
+        <Hero />
+        <Work />
+        <Experience />
+        <MoreProjects />
+        <Skills />
+        <Education />
+      </main>
+      <Contact />
+    </>
   );
 }
-
-export default App;
