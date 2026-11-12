@@ -89,7 +89,7 @@ export default function Skills() {
       <Reveal as="h2" className="text-5xl font-semibold tracking-tight text-white md:text-6xl">
         Skills
       </Reveal>
-      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" ref={grid}>
+      <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-3" ref={grid}>
         {SKILLS.map((skill) => (
           <div key={skill.name} className="skill-card group">
             <pixel-canvas
