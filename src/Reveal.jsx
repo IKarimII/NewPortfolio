@@ -4,13 +4,14 @@ import { gsap, prefersReducedMotion } from "./lib/motion.js";
 // Fades its content up the first time it scrolls into view.
 // With `stagger`, the direct children animate one after another.
 export default function Reveal({
-  as: Tag = "div",
+  as = "div",
   delay = 0,
   y = 28,
   stagger = 0,
   children,
   ...rest
 }) {
+  const Tag = as;
   const ref = useRef(null);
 
   useEffect(() => {
