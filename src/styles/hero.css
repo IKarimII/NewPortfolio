@@ -14,6 +14,24 @@ body {
   position: relative;
 }
 
+@supports (height: 100svh) {
+  .header {
+    height: 100svh;
+  }
+}
+
+.starfield-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero-word {
+  display: inline-block;
+}
+
 .starfield {
   position: absolute;
   top: 50%;
@@ -61,7 +79,7 @@ body {
   animation: zoom 16s alternate infinite;
 }
 
-.header > :not(.starfield) {
+.header > :not(.starfield-wrap):not(.scroll-cue) {
   position: relative;
   z-index: 1;
 }
@@ -97,7 +115,78 @@ body {
   }
 }
 
+.hero-btn {
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.hero-btn:hover,
+.hero-btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.scroll-cue__line {
+  position: relative;
+  width: 1px;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 0.9rem;
+  background: #fff;
+  animation: scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(2.8rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .scroll-cue__line::after {
+    animation: none;
+    transform: translateY(0.8rem);
+  }
+
+  .hero-btn {
+    transition: none;
+  }
+
   .caret {
     animation: none;
   }

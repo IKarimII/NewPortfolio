@@ -1,3 +1,6 @@
+import { useEffect, useRef } from "react";
+import { gsap, prefersReducedMotion } from "./lib/motion.js";
+
 const CONTACTS = [
   {
     label: "GitHub",
@@ -41,10 +44,27 @@ const BUBBLES = Array.from({ length: 128 }, () => {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const root = useRef(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const el = root.current;
+    const ctx = gsap.context(() => {
+      gsap.from(el.querySelectorAll(".footer__links a"), {
+        opacity: 0,
+        y: 14,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: 0.08,
+        scrollTrigger: { trigger: el, start: "top 92%", once: true },
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
-      <div className="footer" id="contact">
+      <div className="footer" id="contact" ref={root}>
         <div className="bubbles" aria-hidden>
           {BUBBLES.map((b, i) => (
             <div key={i} className="bubble" style={b.style} />
