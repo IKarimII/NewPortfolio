@@ -549,27 +549,28 @@
 }
 
 @media (min-width: 860px) {
+  /* Wide screenshot on top, then the story and the details side by side. */
   .pd__body {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: 40px;
-    padding: 20px 32px 28px 20px;
+    gap: 32px;
+    padding: 20px 20px 32px;
+  }
+
+  .pd__media {
+    aspect-ratio: 16 / 7;
+  }
+
+  .pd__info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    padding: 0 16px;
+    align-items: start;
   }
 
   .pd__stats {
     grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
   }
 
-  .pd__media-col {
-    position: sticky;
-    top: 0;
-    align-self: start;
-  }
-
-  .pd__eyebrow {
-    padding-right: 48px; /* keep clear of the close button */
-    min-height: 32px;
-    align-items: center;
-  }
 }
 
 /* GSAP animation clone (card <-> detail frame) */

@@ -254,6 +254,7 @@ export default function ProjectDetails({
             </div>
 
             <div className="pd__info" ref={infoRef}>
+              <div className="pd__lead">
               <div className="pd__eyebrow" data-pd-item>
                 <span>{pad(index)}</span>
                 {project.period ? <span>{project.period}</span> : null}
@@ -305,6 +306,9 @@ export default function ProjectDetails({
                 </div>
               ) : null}
 
+              </div>
+
+              <div className="pd__facts">
               <ul className="pd__highlights">
                 {project.highlights.map((text) => (
                   <li key={text} data-pd-item>
@@ -320,7 +324,7 @@ export default function ProjectDetails({
                   </li>
                 ))}
               </ul>
-
+              </div>
             </div>
           </div>
         </div>

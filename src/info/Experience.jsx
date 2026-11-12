@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "../lib/motion.js";
 import Reveal from "../Reveal.jsx";
 import { EXPERIENCE } from "../data/info.js";
@@ -19,23 +19,13 @@ function useIsMobile() {
 function Tabs() {
   const [active, setActive] = useState(0);
   const listRef = useRef(null);
-  const markerRef = useRef(null);
-  const textRef = useRef(null);
-  const first = useRef(true);
+  const [marker, setMarker] = useState({ y: 0, height: 0 });
 
-  useEffect(() => {
+  // Slide the one marker to the active tab; CSS transitions do the motion,
+  // so quick changes continue from wherever the bar currently is.
+  useLayoutEffect(() => {
     const btn = listRef.current.children[active + 1];
-    const move = { y: btn.offsetTop, height: btn.offsetHeight };
-    const ctx = gsap.context(() => {
-      if (first.current || prefersReducedMotion()) {
-        gsap.set(markerRef.current, move);
-      } else {
-        gsap.to(markerRef.current, { ...move, duration: 0.45, ease: "power3.out" });
-        gsap.fromTo(textRef.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
-      }
-      first.current = false;
-    });
-    return () => ctx.revert();
+    setMarker({ y: btn.offsetTop, height: btn.offsetHeight });
   }, [active]);
 
   const onKey = (e) => {
@@ -53,7 +43,11 @@ function Tabs() {
         <div className="exp-role">{role} · {company}</div>
         <div className="exp-meta">{meta}</div>
         <div className="exp-tabs" role="tablist" aria-orientation="vertical" ref={listRef} onKeyDown={onKey}>
-          <span className="exp-marker" ref={markerRef} aria-hidden="true" />
+          <span
+            className="exp-marker"
+            aria-hidden="true"
+            style={{ transform: `translateY(${marker.y}px)`, height: marker.height }}
+          />
           {points.map((p, i) => (
             <button
               key={p.label}
@@ -75,7 +69,7 @@ function Tabs() {
       </div>
       <div className="exp-panel" id="exp-panel" role="tabpanel" aria-labelledby={`exp-tab-${active}`}>
         <div className="exp-index" aria-hidden="true">{String(active + 1).padStart(2, "0")}</div>
-        <p ref={textRef}>{points[active].text}</p>
+        <p key={active} className="exp-text">{points[active].text}</p>
       </div>
     </div>
   );
