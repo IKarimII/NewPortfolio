@@ -1,0 +1,164 @@
+/* Bubble footer (white theme) */
+.footer {
+  z-index: 1;
+  --footer-background: #fff;
+  --bubble-scale: 1;
+  --bubble-distance-scale: 1;
+  display: grid;
+  position: relative;
+  min-height: 12rem;
+}
+
+.footer .bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: var(--footer-background);
+  filter: url("#blob");
+}
+
+.footer .bubbles .bubble {
+  position: absolute;
+  /* Clamp so bubbles don't create horizontal overflow/scrollbars.
+     We account for the bubble radius plus some extra for the blob filter bleed. */
+  left: clamp(
+    calc((var(--size, 4rem) / 2) + 24px),
+    var(--position, 50%),
+    calc(100% - (var(--size, 4rem) / 2) - 24px)
+  );
+  background: var(--footer-background);
+  border-radius: 100%;
+  animation: bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+    bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+  transform: translate(-50%, 100%);
+}
+
+.footer .content {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  padding: 2rem;
+  background: var(--footer-background);
+}
+
+.footer .content a,
+.footer .content p {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+}
+
+.footer .content a {
+  font-size: 1.05rem;
+}
+
+.footer .content b {
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.footer__title {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.6rem, 1.2vw, 1.1rem);
+}
+
+.footer__links > * {
+  margin-right: 0;
+}
+
+.footer .content p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.footer .content > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .content > div > div {
+  margin: 0.25rem 0;
+}
+
+.footer .content > div > div > * {
+  margin-right: 0.5rem;
+}
+
+.footer__copyright {
+  align-self: center;
+  text-align: right;
+}
+
+.footer__copyright p {
+  margin: 0;
+}
+
+
+@media (max-width: 640px) {
+  .footer {
+    min-height: 9.5rem;
+    --bubble-scale: 0.78;
+    --bubble-distance-scale: 0.85;
+  }
+
+  .footer .content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .footer .content > div > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer .content > div > div > * {
+    margin-right: 0;
+  }
+
+  /* Let bubbles spread further on phones (smaller safety margin) */
+  .footer .bubbles .bubble {
+    left: clamp(
+      calc((var(--size, 4rem) / 2) + 10px),
+      var(--position, 50%),
+      calc(100% - (var(--size, 4rem) / 2) - 10px)
+    );
+  }
+}
+
+@keyframes bubble-size {
+  0%,
+  75% {
+    width: calc(var(--size, 4rem) * var(--bubble-scale, 1));
+    height: calc(var(--size, 4rem) * var(--bubble-scale, 1));
+  }
+  100% {
+    width: 0rem;
+    height: 0rem;
+  }
+}
+
+@keyframes bubble-move {
+  0% {
+    bottom: -4rem;
+  }
+  100% {
+    bottom: calc(var(--distance, 10rem) * var(--bubble-distance-scale, 1));
+  }
+}
+
+.footer {
+  /* Keep visible so bubbles can rise above the footer */
+  overflow: visible;
+}

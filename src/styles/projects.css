@@ -1,0 +1,271 @@
+/* Projects: snippet-style horizontal scroll (with wrap-around looping in JS) */
+.projects-scroll-wrapper {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100vh;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.projects-scroll-wrapper--dragging {
+  user-select: none;
+}
+
+.projects-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-scroll-content {
+  display: flex;
+  align-items: center;
+  gap: 7.5vw;
+  width: fit-content;
+  height: 100%;
+  padding-left: 35vw;
+  padding-right: 35vw;
+}
+
+.projects-gallery {
+  display: flex;
+  gap: 7.5vw;
+  align-items: center;
+  height: 100%;
+}
+
+.projects-gallery__item {
+  height: 45vh;
+  min-height: 240px;
+  max-height: 520px;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.projects-gallery__item--odd {
+  transform: translateY(30%);
+}
+
+.projects-gallery__item--even {
+  transform: translateY(-30%);
+}
+
+
+.projects-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  transition: background 220ms ease, border-color 220ms ease;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+}
+
+.projects-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.projects-card__media {
+  position: absolute;
+  inset: 0;
+}
+
+.projects-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 700ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform;
+}
+
+.projects-card:hover .projects-card__img {
+  transform: scale(1.08);
+}
+
+.projects-card__overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.projects-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 1);
+}
+
+.projects-card__meta {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.projects-card__arrow {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* Full-screen project open view (GSAP clone animates into this media) */
+.projects-details {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+
+.projects-details__panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 5vh 6vw;
+}
+
+.projects-details__media {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  max-width: min(72vw, 980px);
+  max-height: 78vh;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  place-items: center;
+}
+
+.projects-details__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.projects-details__media img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.projects-details__summary {
+  width: 100%;
+  padding: 14px 16px 16px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0a0a0a;
+}
+
+.projects-details__stack {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.projects-details__topbar {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.projects-details__title {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.projects-details__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.projects-details__link,
+.projects-details__nolink {
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.projects-details__link:hover {
+  opacity: 1;
+}
+
+.projects-details__close {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* GSAP animation clone */
+.projects-anim-clone {
+  position: fixed;
+  z-index: 60;
+  border-radius: 24px;
+  overflow: hidden;
+  pointer-events: none;
+  transform-origin: top left;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.projects-anim-clone__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-gallery__item--odd,
+  .projects-gallery__item--even {
+    transform: none;
+  }
+}

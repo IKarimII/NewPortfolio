@@ -1,0 +1,122 @@
+.skill-card {
+  position: relative;
+  height: 168px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #000;
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 220ms ease, border-color 220ms ease;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.skill-card pixel-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.skill-card__inner {
+  z-index: 1;
+}
+
+.skill-card:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.skill-card__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+.skill-bubble {
+  width: 138px;
+  height: 138px;
+  border-radius: 999px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+}
+
+.skill-name {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 1.15rem;
+  line-height: 1.05;
+  padding: 0 10px;
+}
+
+.skill-name--big {
+  font-size: 1.3rem;
+}
+
+.skill-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0);
+}
+
+
+
+.skill-icon__img {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.skill-icon__img--mips {
+  transform: scale(1.6);
+  transform-origin: center;
+}
+
+.skill-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.skill-corner--tl {
+  top: -13px;
+  left: -13px;
+}
+
+.skill-corner--tr {
+  top: -13px;
+  right: -13px;
+}
+
+.skill-corner--bl {
+  bottom: -13px;
+  left: -13px;
+}
+
+.skill-corner--br {
+  bottom: -13px;
+  right: -13px;
+}
