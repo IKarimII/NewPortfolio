@@ -8,6 +8,7 @@
       name="description"
       content="Karim Hawwa is a software engineer and computer science student at the Lebanese American University, building for iOS, the web and the edge."
     />
+    <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://www.karimhawwa.tech/" />
     <link rel="icon" type="image/svg+xml" href="/kh.svg" />
     <meta property="og:type" content="website" />
@@ -19,19 +20,6 @@
     />
     <meta property="og:image" content="https://www.karimhawwa.tech/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script>
-      // Set the theme before first paint so the page never flashes.
-      (function () {
-        var saved = null;
-        try {
-          saved = localStorage.getItem("theme");
-        } catch (e) {}
-        var dark = saved
-          ? saved === "dark"
-          : window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = dark ? "dark" : "light";
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
